@@ -5,6 +5,6 @@ const app = express()
 const PORT =  3030
 
 app.use(express.json())
-app.use('/pedido', router)
+app.use('/marcas', router)
 
 app.listen(PORT, () => { console.log(`Server is running on port ${PORT} 🚀`) })

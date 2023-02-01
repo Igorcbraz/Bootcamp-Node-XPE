@@ -1,16 +1,24 @@
 import express from 'express'
 import {
-  moreModels,
-  lessModels,
-  listMoreModels,
-  listLessModels,
-  listModels
-} from '../src/marcas.js'
+  create,
+  update,
+  destroy,
+  find,
+  getClientPeds,
+  getProductPeds,
+  bestSellers
+} from '../src/pedidos.js'
+
+import {
+  hasPed
+} from '../src/middlewares/checkHasPed.js'
 
 export const router = express.Router();
 
-router.get('/maisModelos', moreModels)
-router.get('/menosModelos', lessModels)
-router.get('/listaMaisModelos/:qtd', listMoreModels)
-router.get('/listaMenosModelos/:qtd', listLessModels)
-router.post('/listaModelos', listModels)
+router.post('/', create)
+router.patch('/:id', hasPed, update)
+router.delete('/:id', hasPed, destroy)
+router.get('/find/:id', hasPed, find)
+router.get('/totalClientPed/:client', getClientPeds)
+router.get('/totalProductPed/:product', getProductPeds)
+router.get('/bestSellers', bestSellers)
